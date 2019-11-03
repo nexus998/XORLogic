@@ -10,6 +10,7 @@ namespace XORLogic
     {
         public static string NOT(string binNumber)
         {
+            binNumber = binNumber.PadLeft(4, '0');
             string ans = "";
             foreach (char val in binNumber)
             {
@@ -20,47 +21,29 @@ namespace XORLogic
         }
         public static string AND(string bin1, string bin2)
         {
-            List<string> l = new List<string>() { bin1, bin2 };
-            string first = l.OrderByDescending(s => s.Length).First();
-            string second = l.OrderByDescending(s => s.Length).Last();
-            second = second.PadLeft(first.Length, '0');
-            //Console.ForegroundColor = ConsoleColor.Blue;
-
-            //Console.ForegroundColor = ConsoleColor.White;
-
             string ans = "";
-            for (int i = 0; i < first.Length; i++)
+            for (int i = 0; i < bin1.Length; i++)
             {
-                ans += Convert.ToInt32(Convert.ToBoolean(int.Parse(first.ToCharArray()[i].ToString())) && Convert.ToBoolean(int.Parse(second.ToCharArray()[i].ToString())));
+                ans += Convert.ToInt32(Convert.ToBoolean(int.Parse(bin1.ToCharArray()[i].ToString())) && Convert.ToBoolean(int.Parse(bin2.ToCharArray()[i].ToString())));
             }
             return ans;
 
         }
         public static string OR(string bin1, string bin2)
         {
-            List<string> l = new List<string>() { bin1, bin2 };
-            string first = l.OrderByDescending(s => s.Length).First();
-            string second = l.OrderByDescending(s => s.Length).Last();
-            second = second.PadLeft(first.Length, '0');
-
             string ans = "";
-            for (int i = 0; i < first.Length; i++)
+            for (int i = 0; i < bin1.Length; i++)
             {
-                ans += Convert.ToInt32(Convert.ToBoolean(int.Parse(first[i].ToString())) || Convert.ToBoolean(int.Parse(second[i].ToString())));
+                ans += Convert.ToInt32(Convert.ToBoolean(int.Parse(bin1[i].ToString())) || Convert.ToBoolean(int.Parse(bin2[i].ToString())));
             }
             return ans;
         }
         public static string NAND(string bin1, string bin2)
         {
-            List<string> l = new List<string>() { bin1, bin2 };
-            string first = l.OrderByDescending(s => s.Length).First();
-            string second = l.OrderByDescending(s => s.Length).Last();
-            second = second.PadLeft(first.Length, '0');
-
             string ans = "";
-            for (int i = 0; i < first.Length; i++)
+            for (int i = 0; i < bin1.Length; i++)
             {
-                ans += Convert.ToInt32(!(Convert.ToBoolean(int.Parse(first[i].ToString())) && Convert.ToBoolean(int.Parse(second[i].ToString()))));
+                ans += Convert.ToInt32(!(Convert.ToBoolean(int.Parse(bin1[i].ToString())) && Convert.ToBoolean(int.Parse(bin2[i].ToString()))));
             }
             return ans;
         }
